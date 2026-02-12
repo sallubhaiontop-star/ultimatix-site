@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Image</title>
+    <title>Slideshow</title>
     <style>
         body {
             margin: 0;
@@ -10,14 +10,38 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
         img {
             max-width: 100%;
             max-height: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        img.active {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <img src="image.jpg" alt="My Image">
+
+<img src="image1.jpg" class="active">
+<img src="image2.jpg">
+<img src="image3.jpg">
+<img src="image4.jpg">
+<img src="image5.jpg">
+
+<script>
+    let slides = document.querySelectorAll("img");
+    let index = 0;
+
+    setInterval(() => {
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+    }, 3000); // Change every 3 seconds
+</script>
+
 </body>
 </html>
